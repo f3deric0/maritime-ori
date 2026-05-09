@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./assets/images/Logo-maritimes.png">
+    <title>Publications — Maritime Affairs</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Barlow+Condensed:wght@300;400;500;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* Sincronizzazione variabili con Index */
+        :root {
+            --gold: #c8913a;
+            --ink: #050c15;
+            --white: #ffffff;
+            --ff-d: 'Cormorant Garamond', serif;
+            --ff-c: 'Barlow Condensed', sans-serif;
+            --ff-b: 'Barlow', sans-serif;
+        }
+
+        body { background: var(--ink); cursor: none; margin: 0; overflow-x: hidden; color: var(--white); font-family: var(--ff-b); }
+        
+        /* ── NAV ACTIVE LINK ── */
+        nav .nav-links a.active { color: var(--gold); }
+        nav .nav-links a.active::after { left: 0; right: 0; }
+
+        /* ── HERO STYLING ── */
+        .pub-hero {
+            min-height: 60vh; background: var(--ink); display: flex; align-items: flex-end;
+            position: relative; padding: 80px 5vw 8rem;
+        }
+        .mega-title-pub {
+            font-family: var(--ff-d);
+            font-size: clamp(3.5rem, 10vw, 8rem);
+            line-height: 0.9;
+            margin: 0;
+        }
+        .mega-title-pub span.gold-text { color: var(--gold); font-style: italic; display: block; }
+        .mega-title-pub span.white-text { color: var(--white); display: block; }
+
+        /* ── FILTERS ── */
+        .pub-filters {
+            background: rgba(5, 12, 21, 0.8); padding: 1.5rem 0; position: sticky; top: 0; z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.06); backdrop-filter: blur(20px);
+        }
+        .pub-filters-inner { max-width: 1200px; margin: 0 auto; display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+        .filter-btn {
+            font-family: var(--ff-c); font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.1em; color: rgba(255,255,255,0.5); background: transparent;
+            border: 1px solid rgba(255,255,255,0.1); padding: 10px 20px; border-radius: 100px;
+            cursor: none; transition: 0.3s;
+        }
+        .filter-btn.active { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+
+        /* ── GRID ── */
+        .pub-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; padding: 4rem 0; }
+        .pub-card {
+            background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07);
+            transition: 0.4s ease; cursor: none;
+        }
+        .pub-card:hover { border-color: var(--gold); transform: translateY(-5px); }
+        .pub-card-img { width: 100%; aspect-ratio: 16/10; background: #111; overflow: hidden; }
+        .pub-card-img img { width: 100%; height: 100%; object-fit: cover; }
+        .pub-card-body { padding: 2rem; }
+        .pub-card h3 { font-family: var(--ff-d); font-size: 1.6rem; margin: 0 0 1rem; line-height: 1.2; }
+        .pub-card p { font-size: 0.95rem; opacity: 0.6; line-height: 1.6; }
+
+        .wrap { max-width: 1400px; margin: 0 auto; padding: 0 5vw; }
+
+        @media (max-width: 992px) { .pub-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .pub-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<div id="compass-cursor">
+  <svg viewBox="0 0 56 56" fill="none">
+    <circle cx="28" cy="28" r="26" stroke="rgba(200,145,58,.35)" stroke-width="1"/>
+    <line x1="28" y1="2"  x2="28" y2="8"  stroke="rgba(200,145,58,.5)" stroke-width="1.5"/>
+    <line x1="28" y1="48" x2="28" y2="54" stroke="rgba(200,145,58,.5)" stroke-width="1.5"/>
+    <line x1="2"  y1="28" x2="8"  y2="28" stroke="rgba(200,145,58,.5)" stroke-width="1.5"/>
+    <line x1="48" y1="28" x2="54" y2="28" stroke="rgba(200,145,58,.5)" stroke-width="1.5"/>
+    <g class="needle">
+      <polygon points="28,6 30.5,26 28,32 25.5,26" fill="rgba(200,145,58,.9)"/>
+      <polygon points="28,50 30.5,30 28,24 25.5,30" fill="rgba(255,255,255,.25)"/>
+    </g>
+    <circle cx="28" cy="28" r="2.5" fill="rgba(200,145,58,.8)"/>
+  </svg>
+</div>
+<div id="cursor-dot"></div>
+
+<nav id="nav" class="dark">
+    <a href="index.html" class="logo">
+        <div class="logo-pill">
+            <img src="./assets/images/Logo-maritimes.png" alt="Maritime Affairs" style="height:44px;width:auto;display:block;">
+            <div class="logo-text">
+                <div class="logo-name">Maritime <em>Affairs</em></div>
+                <span class="logo-sub">EU Blue Economy Do-Tank</span>
+            </div>
+        </div>
+    </a>
+    <ul class="nav-links">
+        <li><a href="index.html#mission">Mission</a></li>
+        <li><a href="index.html#units">Units</a></li>
+        <li><a href="index.html#network">Network</a></li>
+        <li><a href="publications.html" class="active">Publications</a></li>
+        <li><a href="index.html#contact">Join</a></li>
+    </ul>
+    <div class="nav-r">
+        <div class="nav-pulse"><div class="pulse-dot"></div>EU NGO</div>
+        <a href="index.html#contact" class="nav-btn">Join Us</a>
+    </div>
+</nav>
+
+<section class="pub-hero">
+    <div class="wrap">
+        <div style="color:var(--gold); font-family:var(--ff-c); text-transform:uppercase; letter-spacing:0.2em; font-size:0.75rem; margin-bottom:1.5rem;">Expert Knowledge</div>
+        <h1 class="mega-title-pub">
+            <span class="gold-text">Our</span>
+            <span class="white-text">Publications</span>
+        </h1>
+        <p style="max-width: 500px; opacity: 0.6; margin-top:2rem; line-height:1.8;">Strategic briefs, policy explainers and in-depth reports from the European maritime expert network.</p>
+    </div>
+    <div id="hero-count" style="position:absolute; bottom:4rem; right:5vw; font-family:var(--ff-d); font-size:7rem; color:rgba(200,145,58,0.08);">0</div>
+</section>
+
+<div class="pub-filters">
+    <div class="wrap">
+        <div class="pub-filters-inner">
+            <button class="filter-btn active" data-unit="all">All Units</button>
+            <button class="filter-btn" data-unit="Blue Policy & Law">Blue Policy & Law</button>
+            <button class="filter-btn" data-unit="Blue Economy & Logistics">Blue Economy & Logistics</button>
+            <button class="filter-btn" data-unit="Defense & Security">Defense & Security</button>
+            <button class="filter-btn" data-unit="Tech, Energy & Resources">Tech, Energy & Resources</button>
+        </div>
+    </div>
+</div>
+
+<main class="wrap">
+    <div id="articles-grid" class="pub-grid"></div>
+    <div id="empty-state" style="display:none; text-align: center; padding: 10rem 0; opacity: 0.3;">
+         No articles found in this category.
+    </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = 'https://xuinnqoftizczzvkmzjg.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh1aW5ucW9mdGl6Y3p6dmttempnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU2NDAzNDQsImV4cCI6MjA5MTIxNjM0NH0.q-9me1peZF1lcNuzep_e-tNa2eQJAnwkYWQZ0f5lkU4';
+
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+let allArticles = [];
+let currentFilter = 'all';
+
+function renderGrid() {
+    const grid = document.getElementById('articles-grid');
+    const list = currentFilter === 'all' ? allArticles : allArticles.filter(a => a.unit === currentFilter);
+    
+    document.getElementById('hero-count').textContent = list.length;
+    document.getElementById('empty-state').style.display = list.length ? 'none' : 'block';
+
+    grid.innerHTML = list.map(a => `
+        <article class="pub-card" onclick="window.location.href='article.html?id=${a.slug || a.id}'">
+            <div class="pub-card-img">
+                ${a.image_url ? `<img src="${a.image_url}" alt="${a.title}">` : `<div style="padding:40px; opacity:0.2">No Image</div>`}
+            </div>
+            <div class="pub-card-body">
+                <div style="color:var(--gold); font-family:var(--ff-c); font-size:0.65rem; text-transform:uppercase; margin-bottom:1rem;">${a.unit || 'Unit'}</div>
+                <h3>${a.title}</h3>
+                <p>${a.summary || ''}</p>
+                <div style="margin-top:2rem; font-size:0.7rem; opacity:0.4; font-family:var(--ff-c)">
+                    ${new Date(a.published_at).toLocaleDateString('en-GB')}
+                </div>
+            </div>
+        </article>
+    `).join('');
+}
+
+// Filtri
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.dataset.unit;
+        renderGrid();
+    });
+});
+
+// Cursor — identico a main.js
+const cursorEl = document.getElementById('compass-cursor');
+const dotEl    = document.getElementById('cursor-dot');
+if (cursorEl && dotEl) {
+    const needle = cursorEl.querySelector('.needle');
+    let mx = 0, my = 0, cx = 0, cy = 0, angle = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    (function tick() {
+        cx += (mx - cx) * .12;
+        cy += (my - cy) * .12;
+        const dx = mx - cx, dy = my - cy;
+        if (Math.abs(dx) + Math.abs(dy) > .5) angle = Math.atan2(dx, dy) * (180 / Math.PI);
+        cursorEl.style.left = cx + 'px';
+        cursorEl.style.top  = cy + 'px';
+        dotEl.style.left    = mx + 'px';
+        dotEl.style.top     = my + 'px';
+        needle.style.transform = `rotate(${angle}deg)`;
+        requestAnimationFrame(tick);
+    })();
+    document.querySelectorAll('a, button').forEach(el => {
+        el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+        el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+    });
+}
+
+async function loadArticles() {
+    const { data, error } = await supabase
+        .from('articles')
+        .select('*')
+        .eq('published', true)
+        .order('published_at', { ascending: false });
+
+    if (error) {
+        console.error('Supabase Error:', error.message);
+        return;
+    }
+
+    allArticles = data || [];
+    renderGrid();
+}
+
+loadArticles();
+</script>
+</body>
+</html>
